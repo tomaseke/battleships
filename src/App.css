@@ -1,38 +1,96 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
+:root {
+  --cell-size: 33px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.board-container {
+  display: grid;
+  width: 330px;
+  height: 330px;
+  grid-template-columns: repeat(10, 10%);
+  grid-template-rows: repeat(10, 10%);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.battlefield-cell {
+  border: 1px solid rgb(151, 151, 151);
+}
+
+.droppable-cell {
+  z-index: 0;
+}
+
+.droppable {
+  background-color: green;
+}
+
+.board-wrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 20vh 0;
 }
 
-.App-link {
-  color: #61dafb;
+.letters {
+  position: absolute;
+  margin-top: -20px;
+  margin-left: 9px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.numbers {
+  position: absolute;
+  margin-left: -15px;
+  margin-top: 6px;
 }
+
+.horizontal-4 {
+  width: calc(var(--cell-size) * 4);
+  height: var(--cell-size);
+  background-color: blue;
+}
+
+.horizontal-3 {
+  width: calc(var(--cell-size) * 3);
+  height: var(--cell-size);
+  background-color: blue;
+}
+.horizontal-2 {
+  width: calc(var(--cell-size) * 2);
+  height: var(--cell-size);
+  background-color: blue;
+}
+
+.horizontal-1 {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background-color: blue;
+}
+
+.vertical-4 {
+  width: var(--cell-size);
+  height: calc(var(--cell-size) * 4);
+  background-color: blue;
+}
+.vertical-3 {
+  width: var(--cell-size);
+  height: calc(var(--cell-size) * 3);
+  background-color: blue;
+}
+.vertical-2 {
+  width: var(--cell-size);
+  height: calc(var(--cell-size) * 2);
+  background-color: blue;
+}
+
+.vertical-1 {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background-color: blue;
+}
+
