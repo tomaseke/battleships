@@ -130,8 +130,8 @@ const MyBoard = () => {
 
   function addShip(x, y, len, position) {
     if (isPlaceable(x, y, len, position)) {
-      let square = document.querySelector(`[data-x='${x}'][data-y='${y}']`);
-      let ship = document.createElement("div");
+      const square = document.querySelector(`[data-x='${x}'][data-y='${y}']`);
+      const ship = document.createElement("div");
       square.classList.add("droppable-cell");
       ship.classList.add(`${position}-${len}`, "ship");
       ship.draggable = true;
@@ -230,6 +230,19 @@ const MyBoard = () => {
     return random === 1 ? "horizontal" : "vertical";
   }
 
+  function getGameBoardState() {
+    const boardState = [];
+      for (let y = 0; y < 10; y++) {
+        const secondDimension = [];
+        for (let x = 0; x < 10; x++) {
+          const cellClasses = document.querySelector(`[data-x='${x}'][data-y='${y}']`).className;
+          cellClasses.includes('taken') ? secondDimension.push(1) : secondDimension.push(0);
+        }
+        boardState.push(secondDimension);
+      }
+      return boardState;
+  }
+
   const board = [];
   for (let i = 0; i < 10; i++) {
     for (let j = 0; j < 10; j++) {
@@ -242,7 +255,7 @@ const MyBoard = () => {
           data-y={i}
           key={[i, j]}
         >
-          {j === 0 && <div className="numbers">{i}</div>}
+          {j === 0 && <div className={`numbers ${i+1 === 10 && 'ten'}`}>{i + 1}</div>}
           {i === 0 && (
             <div className="letters">{String.fromCharCode(65 + j)}</div>
           )}
